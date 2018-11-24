@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Web.Administration;
 
 namespace SystemHealthMonitorClient
 {
@@ -11,16 +10,13 @@ namespace SystemHealthMonitorClient
     {
         static void Main(string[] args)
         {
-            var serverManager = new ServerManager();
+            IISServerMonitor.Run();
+            WindowsServiceMonitor.Run();
+            MSSQLMonitor.Run();
 
-            foreach (var site in serverManager.Sites)
+            while (true)
             {
-                Console.WriteLine("Site: {0} - {1}", site.Name, site.State);
 
-                foreach (var app in site.Applications)
-                {
-                    Console.WriteLine(app.Path);
-                }
             }
         }
     }
