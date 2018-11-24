@@ -10,14 +10,17 @@ namespace SystemHealthMonitorClient
     {
         static void Main(string[] args)
         {
-            IISServerMonitor.Run();
-            WindowsServiceMonitor.Run();
-            MSSQLMonitor.Run();
+            var list = new List<MonitorInformation>();
 
-            while (true)
+            list.AddRange(IISServerMonitor.Run());
+            list.AddRange(WindowsServiceMonitor.Run());
+            list.AddRange(ProcessMonitor.Run());
+            list.AddRange(MSSQLMonitor.Run());
+
+            var report = new MonitorReport
             {
-
-            }
+                MonitorInformation = list
+            };
         }
     }
 }

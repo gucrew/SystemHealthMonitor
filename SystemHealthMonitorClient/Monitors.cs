@@ -1,51 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Web.Administration;
 using System.Data.Sql;
 using System.Data;
+using System.Diagnostics;
 
 namespace SystemHealthMonitorClient
 {
-    public static class IISServerMonitor
+    public class IISServerMonitor
     {
-        public static void Run()
+        public static List<MonitorInformation> Run()
         {
+            var list = new List<MonitorInformation>();
             var serverManager = new ServerManager();
 
             foreach (var site in serverManager.Sites)
             {
-                Console.WriteLine("Site: {0}, State: {1}", site.Name, site.State);
+                list.Add(new MonitorInformation(MonitorType.IISServer, site.Name, site.State.ToString()));
 
-                foreach (var app in site.Applications)
-                {
-                    Console.WriteLine(app.Path);
-                }
+                //foreach (var app in site.Applications)
+                //{
+                //    Console.WriteLine(app.Path);
+                //}
             }
+
+            return list;
         }
     }
 
     public class WindowsServiceMonitor
     {
-        public static void Run()
+        public static List<MonitorInformation> Run()
         {
+            var list = new List<MonitorInformation>();
             var serviceController = new ServiceController();
             var services = ServiceController.GetServices();
 
-            foreach (ServiceController service in services)
+            foreach (var service in services)
             {
-                Console.WriteLine("Service: {0}, Status: {1}",service.DisplayName, service.Status);
+                list.Add(new MonitorInformation(MonitorType.WindowsService, service.DisplayName, service.Status.ToString()));
             }
+
+            return list;
         }
     }
 
     public class MSSQLMonitor
     {
-        public static void Run()
+        public static List<MonitorInformation> Run()
         {
+            var list = new List<MonitorInformation>();
             var instance = SqlDataSourceEnumerator.Instance;
             var table = instance.GetDataSources();
 
@@ -53,9 +58,29 @@ namespace SystemHealthMonitorClient
             {
                 foreach (DataColumn col in table.Columns)
                 {
-                    Console.WriteLine("{0} = {1}", col.ColumnName, row[col]);
+                    list.Add(new MonitorInformation(MonitorType.MSSQLDatabase, col.ColumnName, row[col].ToString()));
+                    //Console.WriteLine("{0} = {1}", col.ColumnName, row[col]);
                 }
             }
+
+            return list;
+        }
+    }
+
+    public class ProcessMonitor
+    {
+        public static List<MonitorInformation> Run()
+        {
+            var list = new List<MonitorInformation>();
+            var collection = Process.GetProcesses();
+
+            foreach (var item in collection)
+            {
+                list.Add(new MonitorInformation(MonitorType.MSSQLDatabase, item.ProcessName, "Running"));
+                //Console.WriteLine("Process: {0}", item.ProcessName);
+            }
+
+            return list;
         }
     }
 }
