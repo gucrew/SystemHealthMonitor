@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SystemHealthMonitorModel;
 
 namespace SystemHealthMonitorServer.Controllers
 {
@@ -22,9 +23,9 @@ namespace SystemHealthMonitorServer.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]string value)
+        public MonitorReport Post([FromBody]MonitorReport report)
         {
-
+            return report;
         }
 
         [HttpPut("{id}")]

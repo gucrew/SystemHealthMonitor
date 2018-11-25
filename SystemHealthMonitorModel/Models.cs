@@ -5,6 +5,13 @@ namespace SystemHealthMonitorModel
 {
     public class MonitorReport
     {
+        public MonitorReport() { }
+
+        public MonitorReport(List<MonitorInformation> monitorInformation)
+        {
+            MonitorInformation = monitorInformation;
+        }
+
         public string MachineName { get { return Environment.MachineName; } }
         public DateTime Timestamp { get { return DateTime.UtcNow; } }
         public List<MonitorInformation> MonitorInformation { get; set; }
