@@ -26,10 +26,12 @@ namespace SystemHealthMonitorModel
             Type = type;
             Name = name;
             Status = status;
+            Timestamp = DateTime.UtcNow;
         }
 
         public MonitorType Type { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

@@ -24,8 +24,16 @@ namespace SystemHealthMonitorClient
             {
                 var json = JsonConvert.SerializeObject(report);
                 client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-                var response = client.UploadString(ConfigurationManager.AppSettings["ReportUrl"], "post", json);
-                Console.WriteLine(response);
+
+                try
+                {
+                    var response = client.UploadString(ConfigurationManager.AppSettings["ReportUrl"], "post", json);
+                    Console.WriteLine(response);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
 
             Thread.Sleep(1000 * 30);

@@ -7,10 +7,17 @@ namespace SystemHealthMonitorServer.Controllers
     [Route("api/[controller]")]
     public class ReportController : Controller
     {
-        [HttpGet]
-        public IEnumerable<string> Get()
+        ReportManager ReportManager;
+
+        public ReportController(ReportManager reportManager)
         {
-            return new string[] { "value1", "value2" };
+            ReportManager = reportManager;
+        }
+
+        [HttpGet]
+        public Report Get()
+        {
+            return ReportManager.Get();
         }
 
         [HttpGet("{id}")]
@@ -22,6 +29,7 @@ namespace SystemHealthMonitorServer.Controllers
         [HttpPost]
         public MonitorReport Post([FromBody]MonitorReport report)
         {
+            ReportManager.Save(report);
             return report;
         }
 
