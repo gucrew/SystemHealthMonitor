@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using SystemHealthMonitorModel;
+using System.Configuration;
 
 namespace SystemHealthMonitorClient
 {
@@ -23,7 +24,7 @@ namespace SystemHealthMonitorClient
             {
                 var json = JsonConvert.SerializeObject(report);
                 client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-                var response = client.UploadString("http://localhost:29957/api/report", "post", json);
+                var response = client.UploadString(ConfigurationManager.AppSettings["ReportUrl"], "post", json);
                 Console.WriteLine(response);
             }
 
