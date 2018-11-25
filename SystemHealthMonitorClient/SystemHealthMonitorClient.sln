@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemHealthMonitorClient", "SystemHealthMonitorClient.csproj", "{AE2F732B-F4D6-42EC-9214-535936F0A773}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemHealthMonitorServer", "..\SystemHealthMonitorServer\SystemHealthMonitorServer.csproj", "{47E51754-C61D-47B0-84F9-2D75EF523DEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemHealthMonitorModel", "..\SystemHealthMonitorModel\SystemHealthMonitorModel.csproj", "{AC4A4FD4-6E7F-4E75-9D03-60B20A775BCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{AE2F732B-F4D6-42EC-9214-535936F0A773}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE2F732B-F4D6-42EC-9214-535936F0A773}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE2F732B-F4D6-42EC-9214-535936F0A773}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47E51754-C61D-47B0-84F9-2D75EF523DEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47E51754-C61D-47B0-84F9-2D75EF523DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47E51754-C61D-47B0-84F9-2D75EF523DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47E51754-C61D-47B0-84F9-2D75EF523DEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC4A4FD4-6E7F-4E75-9D03-60B20A775BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC4A4FD4-6E7F-4E75-9D03-60B20A775BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC4A4FD4-6E7F-4E75-9D03-60B20A775BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC4A4FD4-6E7F-4E75-9D03-60B20A775BCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

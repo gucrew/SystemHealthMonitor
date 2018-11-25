@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SystemHealthMonitorClient
+namespace SystemHealthMonitorModel
 {
     public class MonitorReport
     {

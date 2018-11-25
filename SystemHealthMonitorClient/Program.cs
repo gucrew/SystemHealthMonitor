@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
+using SystemHealthMonitorModel;
 
 namespace SystemHealthMonitorClient
 {
@@ -21,6 +20,8 @@ namespace SystemHealthMonitorClient
             {
                 MonitorInformation = list
             };
+
+            Thread.Sleep(1000 * 60);
         }
     }
 }

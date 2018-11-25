@@ -5,6 +5,7 @@ using Microsoft.Web.Administration;
 using System.Data.Sql;
 using System.Data;
 using System.Diagnostics;
+using SystemHealthMonitorModel;
 
 namespace SystemHealthMonitorClient
 {
