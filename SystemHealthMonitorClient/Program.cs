@@ -13,17 +13,18 @@ namespace SystemHealthMonitorClient
     {
         static void Main(string[] args)
         {
-            var list = new List<MonitorInformation>();
-            list.AddRange(IISServerMonitor.Run());
-            list.AddRange(WindowsServiceMonitor.Run());
-            list.AddRange(ProcessMonitor.Run());
-            list.AddRange(MSSQLMonitor.Run());
-            var report = new MonitorReport(list);
+            var client = new WebClient { Encoding = Encoding.UTF8 };
+            client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
 
-            using (var client = new WebClient { Encoding = Encoding.UTF8 })
+            while (true)
             {
+                var list = new List<MonitorInformation>();
+                list.AddRange(IISServerMonitor.Run());
+                list.AddRange(WindowsServiceMonitor.Run());
+                list.AddRange(ProcessMonitor.Run());
+                list.AddRange(MSSQLMonitor.Run());
+                var report = new MonitorReport(list);
                 var json = JsonConvert.SerializeObject(report);
-                client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
 
                 try
                 {
@@ -34,9 +35,9 @@ namespace SystemHealthMonitorClient
                 {
                     Console.WriteLine(e.Message);
                 }
-            }
 
-            Thread.Sleep(1000 * 30);
+                Thread.Sleep(1000 * 60 * 15);
+            }
         }
     }
 }
