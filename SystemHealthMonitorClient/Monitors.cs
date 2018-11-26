@@ -18,7 +18,14 @@ namespace SystemHealthMonitorClient
 
             foreach (var site in serverManager.Sites)
             {
-                list.Add(new MonitorInformation(MonitorType.IISServer, site.Name, site.State.ToString()));
+                var status = "Stopped";
+
+                if (site.State == ObjectState.Started)
+                {
+                    status = "Running";
+                }
+
+                list.Add(new MonitorInformation(MonitorType.IISServer, site.Name, status));
 
                 //foreach (var app in site.Applications)
                 //{

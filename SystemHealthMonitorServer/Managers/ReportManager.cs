@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace SystemHealthMonitorServer
 
         public void Save(MonitorReport report)
         {
+            Delete(report.MachineName);
             var model = new Report { MachineName = report.MachineName, Timestamp = report.Timestamp, ReportInformation = new List<ReportInformation>() };
 
             foreach (var item in report.MonitorInformation ?? new List<MonitorInformation>())
@@ -31,6 +33,18 @@ namespace SystemHealthMonitorServer
 
             Context.Reports.Add(model);
             Context.SaveChanges();
+        }
+
+        public void Delete(string machineName)
+        {
+            var collection = Context.Reports.Include(x => x.ReportInformation).Where(x => x.MachineName == machineName).ToList();
+
+            foreach (var report in collection)
+            {
+                Context.ReportInformation.RemoveRange(report.ReportInformation.ToList());
+                Context.Reports.Remove(report);
+                Context.SaveChanges();
+            }
         }
     }
 }
