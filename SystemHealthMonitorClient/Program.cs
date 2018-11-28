@@ -35,7 +35,7 @@ namespace SystemHealthMonitorClient
                 }
                 catch (Exception e)
                 {
-                    //File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log.txt"), e.Message);
+                    File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "error.txt"), e.Message);
                 }
 
                 File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "status.txt"), "Idle");
