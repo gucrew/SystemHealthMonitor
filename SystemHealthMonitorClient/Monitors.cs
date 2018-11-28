@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ServiceProcess;
 using Microsoft.Web.Administration;
 using System.Data.Sql;
