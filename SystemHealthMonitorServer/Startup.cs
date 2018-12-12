@@ -31,7 +31,7 @@ namespace SystemHealthMonitorServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

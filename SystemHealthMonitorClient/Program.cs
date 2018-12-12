@@ -22,7 +22,6 @@ namespace SystemHealthMonitorClient
                 try
                 {
                     File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "status.txt"), "Working");
-
                     var list = new List<MonitorInformation>();
                     list.AddRange(IISServerMonitor.Run());
                     list.AddRange(WindowsServiceMonitor.Run());
