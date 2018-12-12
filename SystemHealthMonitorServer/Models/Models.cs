@@ -12,8 +12,8 @@ namespace SystemHealthMonitorServer
             MonitorInformation = monitorInformation;
         }
 
-        public string MachineName { get { return Environment.MachineName; } }
-        public DateTime Timestamp { get { return DateTime.UtcNow; } }
+        public string MachineName { get; set; }
+        public DateTime Timestamp { get; set; }
         public List<MonitorInformation> MonitorInformation { get; set; }
     }
 

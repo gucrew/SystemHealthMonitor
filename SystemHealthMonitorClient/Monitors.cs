@@ -82,7 +82,7 @@ namespace SystemHealthMonitorClient
 
             foreach (var item in collection)
             {
-                list.Add(new MonitorInformation(MonitorType.MSSQLDatabase, item.ProcessName, "Running"));
+                list.Add(new MonitorInformation(MonitorType.WindowsProcess, item.ProcessName, "Running"));
                 //Console.WriteLine("Process: {0}", item.ProcessName);
             }
 
