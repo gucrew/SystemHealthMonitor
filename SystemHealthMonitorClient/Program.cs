@@ -39,8 +39,9 @@ namespace SystemHealthMonitorClient
                 }
 
                 File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "status.txt"), "Idle");
+                Console.WriteLine("DONE");
 
-                Thread.Sleep(1000 * 60 * 60);
+                Thread.Sleep(1000 * 60 * 15);
             }
         }
     }

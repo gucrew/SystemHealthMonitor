@@ -16,6 +16,7 @@ namespace SystemHealthMonitorClient
 
             foreach (var site in serverManager.Sites)
             {
+                var siteName = "";
                 var status = "Stopped";
 
                 if (site.State == ObjectState.Started)
@@ -23,7 +24,17 @@ namespace SystemHealthMonitorClient
                     status = "Running";
                 }
 
-                list.Add(new MonitorInformation(MonitorType.IISServer, site.Name, status));
+                foreach (var application in site.Applications)
+                {
+                    siteName = application.Path.Substring(1);
+
+                    if (siteName == "")
+                    {
+                        siteName = site.Name;
+                    }
+
+                    list.Add(new MonitorInformation(MonitorType.IISServer, siteName, status));
+                }
 
                 //foreach (var app in site.Applications)
                 //{
