@@ -10,13 +10,23 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-primary">
+    @{ 
+        var controller = ViewContext.RouteData.Values["controller"].ToString();
+    }
+
+    <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
         <a class="navbar-brand" href="/">
             <i class="fa fa-heartbeat"></i>
         </a>
+        <div class="collapse navbar-collapse">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link @(controller == "Home" ? "active" : "")" href="/">Home</a>
+                <a class="nav-item nav-link @(controller == "Configuration" ? "active" : "")" href="@Url.Action("Index", "Configuration", new { })">Configuration</a>
+            </div>
+        </div>
     </nav>
 
-    <div class="container">
+    <div class="">
         @RenderBody()
     </div>
 
