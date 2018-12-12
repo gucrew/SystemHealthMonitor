@@ -45,7 +45,7 @@ namespace SystemHealthMonitorClient
 
             foreach (var service in services)
             {
-                list.Add(new MonitorInformation(MonitorType.WindowsService, service.DisplayName, service.Status.ToString()));
+                list.Add(new MonitorInformation(MonitorType.WindowsService, service.ServiceName, service.Status.ToString()));
             }
 
             return list;
