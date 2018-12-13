@@ -1,6 +1,66 @@
-﻿
+﻿@model List<string>
+
 @{
     ViewData["Title"] = "Configuration";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Server</label>
+                <div class="col-sm-10">
+                    <select name="Server" class="form-control">
+                        <option></option>
+
+                        @foreach (var item in Model)
+                        {
+                            <option>@item</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <table class="table table-bordered" id="application">
+                <thead>
+                    <tr>
+                        <th>Application</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </form>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $('select[name=Server]').select2({
+                placeholder: '-- Select Server --'
+            });
+
+            $('select[name=Server]').change(function () {
+                var server = $(this).val();
+
+                $.getJSON('/Configuration/Applications/' + server, function (data) {
+                    $('#application').DataTable({
+                        columns: [
+                            { data: 'text' },
+                            {
+                                data: null,
+                                render: function (data, type, row) {
+                                    return '<label><input type="checkbox" name="Application" value="' + data.text + '" /> Monitor</label>';
+                                }
+                            }
+                        ],
+                        data: data
+                    });
+                });
+            });
+        });
+    </script>
+}

@@ -13,9 +13,16 @@ namespace SystemHealthMonitorServer
             Context = context;
         }
 
-        public Report Get()
+        public List<string> RetrieveServerList()
         {
-            return Context.Reports.FirstOrDefault();
+            var query = Context.Reports.Select(x => x.MachineName).Distinct().ToList();
+            return query;
+        }
+
+        public List<string> RetrieveApplicationList(string server)
+        {
+            var query = Context.ReportInformation.Include(x => x.Report).Where(x => x.Report.MachineName == server).Select(x => x.Name).Distinct().ToList();
+            return query;
         }
 
         public void Save(MonitorReport report)

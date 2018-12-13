@@ -12,12 +12,6 @@ namespace SystemHealthMonitorServer.Controllers
             ReportManager = reportManager;
         }
 
-        [HttpGet]
-        public Report Get()
-        {
-            return ReportManager.Get();
-        }
-
         [HttpGet("{id}")]
         public string Get(int id)
         {
@@ -29,16 +23,6 @@ namespace SystemHealthMonitorServer.Controllers
         {
             ReportManager.Save(report);
             return report;
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
