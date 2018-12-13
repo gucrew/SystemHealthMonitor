@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SystemHealthMonitorServer
 {
@@ -18,7 +19,7 @@ namespace SystemHealthMonitorServer
         public string MachineName { get; set; }
         public DateTime Timestamp { get; set; }
 
-        public ICollection<ReportInformation> ReportInformation { get; set; }
+        public virtual ICollection<ReportInformation> ReportInformation { get; set; }
     }
 
     public class ReportInformation
@@ -28,6 +29,7 @@ namespace SystemHealthMonitorServer
         public string Name { get; set; }
         public string Status { get; set; }
 
-        public Report Report { get; set; }
+        [Required]
+        public virtual Report Report { get; set; }
     }
 }

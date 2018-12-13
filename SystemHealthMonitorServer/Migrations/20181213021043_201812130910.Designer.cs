@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SystemHealthMonitorServer;
 
 namespace SystemHealthMonitorServer.Migrations
 {
     [DbContext(typeof(SystemHealthMonitorContext))]
-    partial class SystemHealthMonitorContextModelSnapshot : ModelSnapshot
+    [Migration("20181213021043_201812130910")]
+    partial class _201812130910
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
